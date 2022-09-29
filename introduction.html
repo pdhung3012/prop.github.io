@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>HeteroSP</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles/layout.css" type="text/css">
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup" style="text-align:center;">
+      <h1><b>Heterogeneous Graph Neural Networks for Software Effort Estimation</b></h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a style="color:#FF9900; background-color:#FFFFFF;" href="introduction.html">Introduction</a></li>
+        <li><a href="approach.html">Approach</a></li>
+        <!-- <li><a href="evaluation.html">Evaluation</a></li> -->
+      </ul>
+    </nav>
+  </header>
+</div>
+<!-- content -->
+<div class="wrapper row2">
+  <div id="container" class="clear">
+    <section id="slider">
+    <p><b>Background.</b> Software effort can be measured by story point [27]. Story point estimation is important in software projects’ planning. Current approaches for automatically estimating story points focus on applying pre-trained embedding models and deep learning for text regression to solve this problem. These approaches require expensive embedding models and confront challenges that the sequence of text might not be an efficient representation for software issues which can be the combination of text and code. </p> <p><b>Aims.</b> We propose HeteroSP, a tool for estimating story points from textual input of Agile software project issues. We select GPT2SP [11] and Deep-SE [7] as the baselines for comparison.</p> <p><b>Method.</b> First, from the analysis of the story point dataset [7], we conclude that software issues are actually a mixture of natural language sentences with quoted code snippets and have problems related to large-size vocabulary. Second, we provide a module to normalize the input text including words and code tokens of the software issues. Third, we design an algorithm to convert an input software issue to a graph with different types of nodes and edges. Fourth, we construct a heterogeneous graph neural networks model with the support of fastText [5] for constructing initial node embedding to learn and predict the story points of new issues.</p> <p><b>Results.</b> We did the comparison over three scenarios of estima- tion, including within project, cross-project within the repository, and cross-project cross repository with our baseline approaches. We achieve the average Mean Absolute Error (MAE) as 2.38, 2.61, and 2.63 for three scenarios. We outperform GPT2SP in 2/3 of the scenarios while outperforming Deep-SE in the most challenging scenario with significantly less amount of running time. We also compare our approaches with different homogeneous graph neural network models and the results show that the heterogeneous graph neural networks model outperforms the homogeneous models in story point estimation. For time performance, we achieve about 570 seconds as the time performance in both three processes: node embedding initialization, model construction, and story point estimation.</p> <p><b>Conclusion.</b> HeteroSP, a heterogeneous graph neural networks model for story point estimation, achieved good accuracy and efficient running time.</p>
+    <p>The replication package of HeteroSP is avaiable at <a href="https://tinyurl.com/bd8urmy8">this site</a>.</p>
+    </section>
+  </div>
+</div>
+<!-- footer -->
+<div class="wrapper row3">
+  <footer id="footer" class="clear">
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </footer>
+</div>
+</body>
+</html>
