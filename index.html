@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<title>HeteroSP</title>
+<title>PropMiner</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
@@ -10,7 +10,7 @@
 <div class="wrapper row1">
   <header id="header" class="clear">
     <div id="hgroup" style="text-align:center;">
-      <h1><b>Heterogeneous Graph Neural Networks for Software Effort Estimation</b></h1>
+      <h1><b>PropMiner: Enhanced Code and Comment Representation for Code Search and Code Summarization</b></h1>
     </div>
     <nav>
       <ul>
@@ -25,8 +25,8 @@
 <div class="wrapper row2">
   <div id="container" class="clear">
     <section id="slider">
-    <p><b>Background.</b> Software effort can be measured by story point [27]. Story point estimation is important in software projects’ planning. Current approaches for automatically estimating story points focus on applying pre-trained embedding models and deep learning for text regression to solve this problem. These approaches require expensive embedding models and confront challenges that the sequence of text might not be an efficient representation for software issues which can be the combination of text and code. </p> <p><b>Aims.</b> We propose HeteroSP, a tool for estimating story points from textual input of Agile software project issues. We select GPT2SP [11] and Deep-SE [7] as the baselines for comparison.</p> <p><b>Method.</b> First, from the analysis of the story point dataset [7], we conclude that software issues are actually a mixture of natural language sentences with quoted code snippets and have problems related to large-size vocabulary. Second, we provide a module to normalize the input text including words and code tokens of the software issues. Third, we design an algorithm to convert an input software issue to a graph with different types of nodes and edges. Fourth, we construct a heterogeneous graph neural networks model with the support of fastText [5] for constructing initial node embedding to learn and predict the story points of new issues.</p> <p><b>Results.</b> We did the comparison over three scenarios of estima- tion, including within project, cross-project within the repository, and cross-project cross repository with our baseline approaches. We achieve the average Mean Absolute Error (MAE) as 2.38, 2.61, and 2.63 for three scenarios. We outperform GPT2SP in 2/3 of the scenarios while outperforming Deep-SE in the most challenging scenario with significantly less amount of running time. We also compare our approaches with different homogeneous graph neural network models and the results show that the heterogeneous graph neural networks model outperforms the homogeneous models in story point estimation. For time performance, we achieve about 570 seconds as the time performance in both three processes: node embedding initialization, model construction, and story point estimation.</p> <p><b>Conclusion.</b> HeteroSP, a heterogeneous graph neural networks model for story point estimation, achieved good accuracy and efficient running time.</p>
-    <p>The replication package of HeteroSP is avaiable at <a href="https://tinyurl.com/bd8urmy8">this site</a>.</p>
+    <p>The graph representation for source code has been applied in many research works in Software Engineering. In the problem of code-to-comment and comment-to-code inference, pre-trained models for programming languages like GraphCodeBERT used data flow graphs for code representation. While this semantic structure representation of code is considered as an input, information about the syntactic-level structure of the code such as the Abstract Syntax Tree has been neglected in GraphCodeBERT. Similarly, this language model for source code has not taken advantage of the tree representation of code comments such as the natural language parse tree. In this work, we analyze and filter meaningful quantity properties in a dataset consisting of natural language parse trees and abstract syntax trees. We propose PropMiner, a Recurrent Neural Network-based approach for mining natural language parse trees’ properties from source code representation and mining abstract syntax trees’ properties from comment representation. Additionally, we provide an algorithm to augment our mined features for the pre-trained embedding of GraphCodeBERT. With the evaluation of 7583 pairs of code comment-implementation of the TLCodeSum dataset, we show that the new embedding, as the combination of GraphCodeBERT and PropMiner, achieves the Mean Reciprocal Rank as (60.8%, 76.4%) for code search and code summarization,respectively, which outperforms the original GraphCodeBERT by 1.5% and 1.7%. PropMiner can also improve the Mean Reciprocal Rank of the natural language model FastText in the same two downstream tasks from (41.8%, 41.4%) to (44.7%, 52.3%), which shows the effectiveness of the new representation.</p>
+    <p>The replication package of PropMiner is avaiable at <a href="https://tinyurl.com/mr3bj3vh">this site</a>.</p>
     </section>
   </div>
 </div>
