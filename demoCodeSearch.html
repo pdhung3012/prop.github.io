@@ -7,7 +7,7 @@
     <script  src="scripts/handleCodeSearch.js"></script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
-<body>
+<body onload="loadString();">
 <div class="wrapper row1">
   <header id="header" class="clear">
     <div id="hgroup" style="text-align:center;">
@@ -28,7 +28,43 @@
 <div class="wrapper row2">
   <div id="container" class="clear">
     <section id="slider">
+        <form class="" action="#" method="post">
         <h3>Code Search</h3>
+        <p>For Code Search, we do an experiment on the dataset of <b>7584</b> pairs of comment and code of the <b>TLCodeSum</b> dataset in the clean version of CAT benchmark (<a  href="https://arxiv.org/abs/2207.05579">See paper</a>). We evaluate the effectiveness of PropMiner to the original embedding of GraphCodeBERT in this evaluation. We use Top-K accuracy as the evaluation metric for each code search phrase. In each query and candidate, we display them by single line (we mark '\n' character as ' _EL_ ' character).</p>
+        <p><b>Result (RQ1)</b>: GraphCodeBERT+PropMiner won <b>929/7584</b> cases, while the original GraphCodeBERT won <b>390/7584</b> cases, leads our Mean Reciprocal Rank to be 60.82\ over 59.35% of GraphCodeBERT on TLCodeSum dataset</p>
+        <p>We use <a  href="https://github.com/microsoft/CodeBERT/issues/112">this tutorial</a> for extraction comments and code snippets' embedding of GraphCodeBERT. The default dimension of vector provided by GrraphCodeBERT is <b>768</b></p>
+        <p>You can input the text as code comment on the input box, or you can load the cached  queries we analyzed by two combo boxes above. In the query's result, we will show you the results of the cached query that is the most similar to your input.</p>
+        <div>
+
+                <table>
+                    <tr>
+                        <td>Input query as comment: <input id="btnSearch" type="button" name="btnSearch" value="Search"/></td>
+                    </tr>
+                    <tr>
+                        <td><textarea id="txtInputQuery" name="idInputQuery" rows="10" cols="115"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td style="color:green;">Queries that GraphCodeBERT+PropMiner won: <input id="btnViewWon" type="button" name="btnViewWon" value="View Results"/><br/>
+                            <select name="selectWon" id="selectWon">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:red;">Queries that original GraphCodeBERT won: <input id="btnViewLost" type="button" name="btnViewLost" value="View Results"/><br/>
+                            <select name="selectLost" id="selectLost">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Search Results (with Steps by Steps):</td>
+                    </tr>
+                    <tr>
+                        <td><textarea id="txtSearchResult" name="idSearchResult" rows="50" cols="115"></textarea></td>
+                    </tr>
+                </table>
+
+        <div>
+            </form>
     </section>
   </div>
 </div>
