@@ -1,0 +1,136 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+  <script src="https://unpkg.com/gojs@2.2.16/release/go.js"></script>
+  <p>
+    This is a minimalist HTML and JavaScript skeleton of the GoJS Sample
+    <a href="https://gojs.net/latest/samples/parseTree.html">parseTree.html</a>. It was automatically generated from a button on the sample page,
+    and does not contain the full HTML. It is intended as a starting point to adapt for your own usage.
+    For many samples, you may need to inspect the
+    <a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/parseTree.html">full source on Github</a>
+    and copy other files or scripts.
+  </p>
+  <div id="allSampleContent" class="p-4 w-full">
+    <script id="code">
+    function init() {
+
+      // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
+      // For details, see https://gojs.net/latest/intro/buildingObjects.html
+      const $ = go.GraphObject.make;  // for conciseness in defining templates
+
+      myDiagram =
+        $(go.Diagram, "myDiagramDiv",
+          {
+            allowCopy: false,
+            allowDelete: false,
+            allowMove: false,
+            initialAutoScale: go.Diagram.Uniform,
+            layout:
+              $(FlatTreeLayout,  // custom Layout, defined below
+                {
+                  angle: 90,
+                  compaction: go.TreeLayout.CompactionNone
+                }),
+            "undoManager.isEnabled": true
+          });
+
+      myDiagram.nodeTemplate =
+        $(go.Node, "Vertical",
+          { selectionObjectName: "BODY" },
+          $(go.Panel, "Auto", { name: "BODY" },
+            $(go.Shape, "RoundedRectangle",
+              new go.Binding("fill"),
+              new go.Binding("stroke")),
+            $(go.TextBlock,
+              { font: "bold 12pt Arial, sans-serif", margin: new go.Margin(4, 2, 2, 2) },
+              new go.Binding("text"))
+          ),
+          $(go.Panel,  // this is underneath the "BODY"
+            { height: 17 },  // always this height, even if the TreeExpanderButton is not visible
+            $("TreeExpanderButton")
+          )
+        );
+
+      myDiagram.linkTemplate =
+        $(go.Link,
+          $(go.Shape, { strokeWidth: 1.5 }));
+
+      // set up the nodeDataArray, describing each part of the sentence
+      var nodeDataArray = [
+        { key: 1, text: "Sentence\nbbbb", fill: "#f68c06", stroke: "#4d90fe" },
+        { key: 2, text: "NP222", fill: "#f68c06", stroke: "#4d90fe", parent: 1 },
+        { key: 3, text: "DT", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+        { key: 4, text: "A", fill: "#f8f8f8", stroke: "#4d90fe", parent: 3 },
+        { key: 5, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+        { key: 6, text: "rare", fill: "#f8f8f8", stroke: "#4d90fe", parent: 5 },
+        { key: 7, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+        { key: 8, text: "black", fill: "#f8f8f8", stroke: "#4d90fe", parent: 7 },
+        { key: 9, text: "NN", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+        { key: 10, text: "squirrel", fill: "#f8f8f8", stroke: "#4d90fe", parent: 9 },
+        { key: 11, text: "VP", fill: "#f68c06", stroke: "#4d90fe", parent: 1 },
+        { key: 12, text: "VBZ", fill: "#ccc", stroke: "#4d90fe", parent: 11 },
+        { key: 13, text: "has", fill: "#f8f8f8", stroke: "#4d90fe", parent: 12 },
+        { key: 14, text: "VP", fill: "#f68c06", stroke: "#4d90fe", parent: 11 },
+        { key: 15, text: "VBN", fill: "#ccc", stroke: "#4d90fe", parent: 14 },
+        { key: 16, text: "become", fill: "#f8f8f8", stroke: "#4d90fe", parent: 15 },
+        { key: 17, text: "NP", fill: "#f68c06", stroke: "#4d90fe", parent: 14 },
+        { key: 18, text: "NP", fill: "#f68c06", stroke: "#4d90fe", parent: 17 },
+        { key: 19, text: "DT", fill: "#ccc", stroke: "#4d90fe", parent: 18 },
+        { key: 20, text: "a", fill: "#f8f8f8", stroke: "#4d90fe", parent: 19 },
+        { key: 21, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 18 },
+        { key: 22, text: "regular", fill: "#f8f8f8", stroke: "#4d90fe", parent: 21 },
+        { key: 23, text: "NN", fill: "#ccc", stroke: "#4d90fe", parent: 18 },
+        { key: 24, text: "visitor", fill: "#f8f8f8", stroke: "#4d90fe", parent: 23 },
+        { key: 25, text: "PP", fill: "#f68c06", stroke: "#4d90fe", parent: 17 },
+        { key: 26, text: "TO", fill: "#ccc", stroke: "#4d90fe", parent: 25 },
+        { key: 27, text: "to", fill: "#f8f8f8", stroke: "#4d90fe", parent: 26 },
+        { key: 28, text: "NP", fill: "#f68c06", stroke: "#4d90fe", parent: 25 },
+        { key: 29, text: "DT", fill: "#ccc", stroke: "#4d90fe", parent: 28 },
+        { key: 30, text: "a", fill: "#f8f8f8", stroke: "#4d90fe", parent: 29 },
+        { key: 31, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 28 },
+        { key: 32, text: "suburban", fill: "#f8f8f8", stroke: "#4d90fe", parent: 31 },
+        { key: 33, text: "NN", fill: "#ccc", stroke: "#4d90fe", parent: 28 },
+        { key: 34, text: "garden", fill: "#f8f8f8", stroke: "#4d90fe", parent: 33 },
+        { key: 35, text: ".", fill: "#ccc", stroke: "#4d90fe", parent: 1 },
+        { key: 36, text: ".", fill: "#f8f8f8", stroke: "#4d90fe", parent: 35 }
+      ]
+
+      // create the Model with data for the tree, and assign to the Diagram
+      myDiagram.model =
+        new go.TreeModel(
+          { nodeDataArray: nodeDataArray });
+    }
+
+  // Customize the TreeLayout to position all of the leaf nodes at the same vertical Y position.
+  class FlatTreeLayout extends go.TreeLayout {
+    // This assumes the TreeLayout.angle is 90 -- growing downward
+    commitLayout() {
+      super.commitLayout();  // call base method first
+      // find maximum Y position of all Nodes
+      var y = -Infinity;
+      this.network.vertexes.each(v => y = Math.max(y, v.node.position.y));
+      // move down all leaf nodes to that Y position, but keeping their X position
+      this.network.vertexes.each(v => {
+        if (v.destinationEdges.count === 0) {
+          // shift the node down to Y
+          v.node.moveTo(v.node.position.x, y);
+          // extend the last segment vertically
+          v.node.toEndSegmentLength = Math.abs(v.centerY - y);
+        } else {  // restore to normal value
+          v.node.toEndSegmentLength = 10;
+        }
+      });
+    }
+  }
+  // end FlatTreeLayout
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+<div id="sample">
+  <div id="myDiagramDiv" style="border: 1px solid black; width: 100%; height: 500px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="2108" height="996" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 498px;">This text is displayed if your browser does not support the Canvas HTML element.</canvas></div>
+<p class="text-xs">GoJS version 2.2.16. Copyright 1998-2022 by Northwoods Software.</p></div>
+    <p><a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/parseTree.html" target="_blank">View this sample page's source on GitHub</a></p></div>
+  </body>
+  </html>

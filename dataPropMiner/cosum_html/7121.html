@@ -1,0 +1,136 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+  <script src="https://unpkg.com/gojs@2.2.16/release/go.js"></script>
+  <p>
+    This is a minimalist HTML and JavaScript skeleton of the GoJS Sample
+    <a href="https://gojs.net/latest/samples/parseTree.html">parseTree.html</a>. It was automatically generated from a button on the sample page,
+    and does not contain the full HTML. It is intended as a starting point to adapt for your own usage.
+    For many samples, you may need to inspect the
+    <a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/parseTree.html">full source on Github</a>
+    and copy other files or scripts.
+  </p>
+  <div id="allSampleContent" class="p-4 w-full">
+    <script id="code">
+    function init() {
+
+      // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
+      // For details, see https://gojs.net/latest/intro/buildingObjects.html
+      const $ = go.GraphObject.make;  // for conciseness in defining templates
+
+      myDiagram =
+        $(go.Diagram, "myDiagramDiv",
+          {
+            allowCopy: false,
+            allowDelete: false,
+            allowMove: false,
+            initialAutoScale: go.Diagram.Uniform,
+            layout:
+              $(FlatTreeLayout,  // custom Layout, defined below
+                {
+                  angle: 90,
+                  compaction: go.TreeLayout.CompactionNone
+                }),
+            "undoManager.isEnabled": true
+          });
+
+      myDiagram.nodeTemplate =
+        $(go.Node, "Vertical",
+          { selectionObjectName: "BODY" },
+          $(go.Panel, "Auto", { name: "BODY" },
+            $(go.Shape, "RoundedRectangle",
+              new go.Binding("fill"),
+              new go.Binding("stroke")),
+            $(go.TextBlock,
+              { font: "bold 12pt Arial, sans-serif", margin: new go.Margin(4, 2, 2, 2) },
+              new go.Binding("text"))
+          ),
+          $(go.Panel,  // this is underneath the "BODY"
+            { height: 17 },  // always this height, even if the TreeExpanderButton is not visible
+            $("TreeExpanderButton")
+          )
+        );
+
+      myDiagram.linkTemplate =
+        $(go.Link,
+          $(go.Shape, { strokeWidth: 1.5 }));
+
+      // set up the nodeDataArray, describing each part of the sentence
+      // var nodeDataArray = [
+      //   { key: 1, text: "Sentence\nbbbb", fill: "#f68c06", stroke: "#4d90fe" },
+      //   { key: 2, text: "NP222", fill: "#f68c06", stroke: "#4d90fe", parent: 1 },
+      //   { key: 3, text: "DT", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+      //   { key: 4, text: "A", fill: "#f8f8f8", stroke: "#4d90fe", parent: 3 },
+      //   { key: 5, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+      //   { key: 6, text: "rare", fill: "#f8f8f8", stroke: "#4d90fe", parent: 5 },
+      //   { key: 7, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+      //   { key: 8, text: "black", fill: "#f8f8f8", stroke: "#4d90fe", parent: 7 },
+      //   { key: 9, text: "NN", fill: "#ccc", stroke: "#4d90fe", parent: 2 },
+      //   { key: 10, text: "squirrel", fill: "#f8f8f8", stroke: "#4d90fe", parent: 9 },
+      //   { key: 11, text: "VP", fill: "#f68c06", stroke: "#4d90fe", parent: 1 },
+      //   { key: 12, text: "VBZ", fill: "#ccc", stroke: "#4d90fe", parent: 11 },
+      //   { key: 13, text: "has", fill: "#f8f8f8", stroke: "#4d90fe", parent: 12 },
+      //   { key: 14, text: "VP", fill: "#f68c06", stroke: "#4d90fe", parent: 11 },
+      //   { key: 15, text: "VBN", fill: "#ccc", stroke: "#4d90fe", parent: 14 },
+      //   { key: 16, text: "become", fill: "#f8f8f8", stroke: "#4d90fe", parent: 15 },
+      //   { key: 17, text: "NP", fill: "#f68c06", stroke: "#4d90fe", parent: 14 },
+      //   { key: 18, text: "NP", fill: "#f68c06", stroke: "#4d90fe", parent: 17 },
+      //   { key: 19, text: "DT", fill: "#ccc", stroke: "#4d90fe", parent: 18 },
+      //   { key: 20, text: "a", fill: "#f8f8f8", stroke: "#4d90fe", parent: 19 },
+      //   { key: 21, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 18 },
+      //   { key: 22, text: "regular", fill: "#f8f8f8", stroke: "#4d90fe", parent: 21 },
+      //   { key: 23, text: "NN", fill: "#ccc", stroke: "#4d90fe", parent: 18 },
+      //   { key: 24, text: "visitor", fill: "#f8f8f8", stroke: "#4d90fe", parent: 23 },
+      //   { key: 25, text: "PP", fill: "#f68c06", stroke: "#4d90fe", parent: 17 },
+      //   { key: 26, text: "TO", fill: "#ccc", stroke: "#4d90fe", parent: 25 },
+      //   { key: 27, text: "to", fill: "#f8f8f8", stroke: "#4d90fe", parent: 26 },
+      //   { key: 28, text: "NP", fill: "#f68c06", stroke: "#4d90fe", parent: 25 },
+      //   { key: 29, text: "DT", fill: "#ccc", stroke: "#4d90fe", parent: 28 },
+      //   { key: 30, text: "a", fill: "#f8f8f8", stroke: "#4d90fe", parent: 29 },
+      //   { key: 31, text: "JJ", fill: "#ccc", stroke: "#4d90fe", parent: 28 },
+      //   { key: 32, text: "suburban", fill: "#f8f8f8", stroke: "#4d90fe", parent: 31 },
+      //   { key: 33, text: "NN", fill: "#ccc", stroke: "#4d90fe", parent: 28 },
+      //   { key: 34, text: "garden", fill: "#f8f8f8", stroke: "#4d90fe", parent: 33 },
+      //   { key: 35, text: ".", fill: "#ccc", stroke: "#4d90fe", parent: 1 },
+      //   { key: 36, text: ".", fill: "#f8f8f8", stroke: "#4d90fe", parent: 35 }
+      // ]
+		var nodeDataArray = [{'text': '0-0-16-0\nprogram', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 1}, {'text': '0-0-0-27\nlocal_variable_declaration', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 2, 'parent': 1}, {'text': '0-0-0-12\nmodifiers', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 3, 'parent': 2}, {'text': '0-0-0-6\npublic\npublic', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 4, 'parent': 3}, {'text': '0-7-0-12\nfinal\nfinal', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 5, 'parent': 3}, {'text': '0-13-0-20\nboolean_type\nboolean', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 6, 'parent': 2}, {'text': '0-21-0-27\nvariable_declarator', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 7, 'parent': 2}, {'text': '0-21-0-27\nidentifier\nremove', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 8, 'parent': 7}, {'text': '0-27-0-27\n;\n', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 9, 'parent': 2}, {'text': '0-27-0-49\nERROR', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 10, 'parent': 1}, {'text': '0-27-0-49\nformal_parameters', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 11, 'parent': 10}, {'text': '0-27-0-28\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 12, 'parent': 11}, {'text': '0-28-0-48\nformal_parameter', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 13, 'parent': 11}, {'text': '0-28-0-33\nmodifiers', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 14, 'parent': 13}, {'text': '0-28-0-33\nfinal\nfinal', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 15, 'parent': 14}, {'text': '0-34-0-37\ntype_identifier\nURI', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 16, 'parent': 13}, {'text': '0-38-0-48\nidentifier\nserviceURI', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 17, 'parent': 13}, {'text': '0-48-0-49\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 18, 'parent': 11}, {'text': '0-49-15-1\nblock', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 19, 'parent': 1}, {'text': '0-49-0-50\n{\n{', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 20, 'parent': 19}, {'text': '1-2-1-25\nlocal_variable_declaration', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 21, 'parent': 19}, {'text': '1-2-1-9\nboolean_type\nboolean', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 22, 'parent': 21}, {'text': '1-10-1-24\nvariable_declarator', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 23, 'parent': 21}, {'text': '1-10-1-18\nidentifier\nmodified', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 24, 'parent': 23}, {'text': '1-18-1-19\n=\n=', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 25, 'parent': 23}, {'text': '1-19-1-24\nfalse\nfalse', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 26, 'parent': 23}, {'text': '1-24-1-25\n;\n;', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 27, 'parent': 21}, {'text': '2-0-13-3\nsynchronized_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 28, 'parent': 19}, {'text': '2-0-2-12\nsynchronized\nsynchronized', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 29, 'parent': 28}, {'text': '2-13-2-19\nparenthesized_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 30, 'parent': 28}, {'text': '2-13-2-14\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 31, 'parent': 30}, {'text': '2-14-2-18\nthis\nthis', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 32, 'parent': 30}, {'text': '2-18-2-19\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 33, 'parent': 30}, {'text': '2-20-13-3\nblock', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 34, 'parent': 28}, {'text': '2-20-2-21\n{\n{', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 35, 'parent': 34}, {'text': '3-4-5-5\nif_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 36, 'parent': 34}, {'text': '3-4-3-6\nif\nif', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 37, 'parent': 36}, {'text': '3-7-3-43\nparenthesized_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 38, 'parent': 36}, {'text': '3-7-3-8\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 39, 'parent': 38}, {'text': '3-8-3-42\nbinary_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 40, 'parent': 38}, {'text': '3-8-3-34\nmethod_invocation', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 41, 'parent': 40}, {'text': '3-8-3-15\nidentifier\naliases', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 42, 'parent': 41}, {'text': '3-15-3-16\n.\n.', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 43, 'parent': 41}, {'text': '3-16-3-22\nidentifier\nremove', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 44, 'parent': 41}, {'text': '3-22-3-34\nargument_list', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 45, 'parent': 41}, {'text': '3-22-3-23\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 46, 'parent': 45}, {'text': '3-23-3-33\nidentifier\nserviceURI', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 47, 'parent': 45}, {'text': '3-33-3-34\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 48, 'parent': 45}, {'text': '3-35-3-37\n!=\n!=', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 49, 'parent': 40}, {'text': '3-38-3-42\nnull_literal\nnull', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 50, 'parent': 40}, {'text': '3-42-3-43\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 51, 'parent': 38}, {'text': '3-44-5-5\nblock', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 52, 'parent': 36}, {'text': '3-44-3-45\n{\n{', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 53, 'parent': 52}, {'text': '4-6-4-20\nexpression_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 54, 'parent': 52}, {'text': '4-6-4-19\nassignment_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 55, 'parent': 54}, {'text': '4-6-4-14\nidentifier\nmodified', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 56, 'parent': 55}, {'text': '4-14-4-15\n=\n=', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 57, 'parent': 55}, {'text': '4-15-4-19\ntrue\ntrue', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 58, 'parent': 55}, {'text': '4-19-4-20\n;\n;', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 59, 'parent': 54}, {'text': '5-4-5-5\n}\n}', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 60, 'parent': 52}, {'text': '6-4-6-61\nlocal_variable_declaration', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 61, 'parent': 34}, {'text': '6-4-6-9\nmodifiers', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 62, 'parent': 61}, {'text': '6-4-6-9\nfinal\nfinal', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 63, 'parent': 62}, {'text': '6-10-6-24\ntype_identifier\nServiceFactory', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 64, 'parent': 61}, {'text': '6-25-6-60\nvariable_declarator', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 65, 'parent': 61}, {'text': '6-25-6-32\nidentifier\nfactory', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 66, 'parent': 65}, {'text': '6-32-6-33\n=\n=', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 67, 'parent': 65}, {'text': '6-33-6-60\nmethod_invocation', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 68, 'parent': 65}, {'text': '6-33-6-41\nidentifier\nservices', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 69, 'parent': 68}, {'text': '6-41-6-42\n.\n.', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 70, 'parent': 68}, {'text': '6-42-6-48\nidentifier\nremove', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 71, 'parent': 68}, {'text': '6-48-6-60\nargument_list', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 72, 'parent': 68}, {'text': '6-48-6-49\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 73, 'parent': 72}, {'text': '6-49-6-59\nidentifier\nserviceURI', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 74, 'parent': 72}, {'text': '6-59-6-60\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 75, 'parent': 72}, {'text': '6-60-6-61\n;\n;', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 76, 'parent': 61}, {'text': '7-4-12-5\nif_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 77, 'parent': 34}, {'text': '7-4-7-6\nif\nif', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 78, 'parent': 77}, {'text': '7-7-7-24\nparenthesized_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 79, 'parent': 77}, {'text': '7-7-7-8\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 80, 'parent': 79}, {'text': '7-8-7-23\nbinary_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 81, 'parent': 79}, {'text': '7-8-7-15\nidentifier\nfactory', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 82, 'parent': 81}, {'text': '7-16-7-18\n!=\n!=', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 83, 'parent': 81}, {'text': '7-19-7-23\nnull_literal\nnull', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 84, 'parent': 81}, {'text': '7-23-7-24\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 85, 'parent': 79}, {'text': '7-25-12-5\nblock', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 86, 'parent': 77}, {'text': '7-25-7-26\n{\n{', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 87, 'parent': 86}, {'text': '8-6-8-20\nexpression_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 88, 'parent': 86}, {'text': '8-6-8-19\nassignment_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 89, 'parent': 88}, {'text': '8-6-8-14\nidentifier\nmodified', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 90, 'parent': 89}, {'text': '8-14-8-15\n=\n=', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 91, 'parent': 89}, {'text': '8-15-8-19\ntrue\ntrue', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 92, 'parent': 89}, {'text': '8-19-8-20\n;\n;', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 93, 'parent': 88}, {'text': '9-6-11-7\nif_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 94, 'parent': 86}, {'text': '9-6-9-8\nif\nif', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 95, 'parent': 94}, {'text': '9-9-9-50\nparenthesized_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 96, 'parent': 94}, {'text': '9-9-9-10\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 97, 'parent': 96}, {'text': '9-10-9-49\ninstanceof_expression', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 98, 'parent': 96}, {'text': '9-10-9-17\nidentifier\nfactory', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 99, 'parent': 98}, {'text': '9-18-9-28\ninstanceof\ninstanceof', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 100, 'parent': 98}, {'text': '9-29-9-49\ntype_identifier\nCustomServiceFactory', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 101, 'parent': 98}, {'text': '9-49-9-50\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 102, 'parent': 96}, {'text': '9-51-11-7\nblock', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 103, 'parent': 94}, {'text': '9-51-9-52\n{\n{', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 104, 'parent': 103}, {'text': '10-8-10-39\nexpression_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 105, 'parent': 103}, {'text': '10-8-10-38\nmethod_invocation', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 106, 'parent': 105}, {'text': '10-8-10-22\nidentifier\ncustomServices', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 107, 'parent': 106}, {'text': '10-22-10-23\n.\n.', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 108, 'parent': 106}, {'text': '10-23-10-29\nidentifier\nremove', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 109, 'parent': 106}, {'text': '10-29-10-38\nargument_list', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 110, 'parent': 106}, {'text': '10-29-10-30\n(\n(', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 111, 'parent': 110}, {'text': '10-30-10-37\nidentifier\nfactory', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 112, 'parent': 110}, {'text': '10-37-10-38\n)\n)', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 113, 'parent': 110}, {'text': '10-38-10-39\n;\n;', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 114, 'parent': 105}, {'text': '11-6-11-7\n}\n}', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 115, 'parent': 103}, {'text': '12-4-12-5\n}\n}', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 116, 'parent': 86}, {'text': '13-2-13-3\n}\n}', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 117, 'parent': 34}, {'text': '14-2-14-18\nreturn_statement', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 118, 'parent': 19}, {'text': '14-2-14-8\nreturn\nreturn', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 119, 'parent': 118}, {'text': '14-9-14-17\nidentifier\nmodified', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 120, 'parent': 118}, {'text': '14-17-14-18\n;\n;', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 121, 'parent': 118}, {'text': '15-0-15-1\n}\n}', 'fill': '#f68c06', 'stroke': '#4d90fe', 'key': 122, 'parent': 19}];
+      // create the Model with data for the tree, and assign to the Diagram
+      myDiagram.model =
+        new go.TreeModel(
+          { nodeDataArray: nodeDataArray });
+    }
+
+  // Customize the TreeLayout to position all of the leaf nodes at the same vertical Y position.
+  class FlatTreeLayout extends go.TreeLayout {
+    // This assumes the TreeLayout.angle is 90 -- growing downward
+    commitLayout() {
+      super.commitLayout();  // call base method first
+      // find maximum Y position of all Nodes
+      var y = -Infinity;
+      this.network.vertexes.each(v => y = Math.max(y, v.node.position.y));
+      // move down all leaf nodes to that Y position, but keeping their X position
+      this.network.vertexes.each(v => {
+        if (v.destinationEdges.count === 0) {
+          // shift the node down to Y
+          v.node.moveTo(v.node.position.x, y);
+          // extend the last segment vertically
+          v.node.toEndSegmentLength = Math.abs(v.centerY - y);
+        } else {  // restore to normal value
+          v.node.toEndSegmentLength = 10;
+        }
+      });
+    }
+  }
+  // end FlatTreeLayout
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+<div id="sample">
+  <div id="myDiagramDiv" style="border: 1px solid black; width: 100%; height: 500px; position: relative; -webkit-tap-highlight-color: rgba(255, 255, 255, 0);"><canvas tabindex="0" width="2108" height="996" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 498px;">This text is displayed if your browser does not support the Canvas HTML element.</canvas></div>
+<p class="text-xs">GoJS version 2.2.16. Copyright 1998-2022 by Northwoods Software.</p></div>
+    <p><a href="https://github.com/NorthwoodsSoftware/GoJS/blob/master/samples/parseTree.html" target="_blank">View this sample page's source on GitHub</a></p></div>
+  </body>
+  </html>

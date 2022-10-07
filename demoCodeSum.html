@@ -30,11 +30,11 @@
   <div id="container" class="clear">
     <section id="slider">
         <form class="" action="#" method="post">
-        <h3>Code Suummarization</h3>
+        <h3>Code Summarization</h3>
         <p>For Code Summarization, we do an experiment on the dataset of <b>7584</b> pairs of comment and code of the <b>TLCodeSum</b> dataset in the clean version of CAT benchmark (<a  href="https://arxiv.org/abs/2207.05579">See paper</a>). We evaluate the effectiveness of PropMiner to the original embedding of GraphCodeBERT in this evaluation. We use Top-K accuracy as the evaluation metric for each code search phrase. In each query and candidate, we display them by single line (we mark '\n' character as ' _EL_ ' character).</p>
         <p><b>Result (RQ2)</b>: GraphCodeBERT+PropMiner won <b>1112/7584</b> cases, while the original GraphCodeBERT won <b>450/7584</b> cases, leads our Mean Reciprocal Rank to be 74.65% over 76.65% of GraphCodeBERT on TLCodeSum dataset</p>
         <p>We use <a  href="https://github.com/microsoft/CodeBERT/issues/112">this tutorial</a> for extraction comments and code snippets' embedding of GraphCodeBERT. The default dimension of vector provided by GrraphCodeBERT is <b>768</b></p>
-        <p>You can input the text as code comment on the input box, or you can load the cached  queries we analyzed by two combo boxes above. In the query's result, we will show you the results of the cached query that is the most similar to your input.</p>
+        <p>You can input the text as code snippet on the input box, or you can load the cached  queries we analyzed by two combo boxes above. In the query's result, we will show you the results of the cached query that is the most similar to your input.</p>
         <div>
 
                 <table>
@@ -67,6 +67,9 @@
                     </tr>
                     <tr>
                         <td>Search Results (with Steps by Steps):</td>
+                    </tr>
+                    <tr>
+                        <td>View query tree (Abstract Syntax Tree) of step 2.1. at <a id="linkViewTree" href="#">here</a></td>
                     </tr>
                     <tr>
                         <td>
