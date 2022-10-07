@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	1737	False	@SuppressWarnings("unchecked") public List<Boundary> populateArea(final Long wardId){ _EL_   HierarchyType hType=heirarchyTypeService.getHierarchyTypeByName(hierarchyTypeName); _EL_   ; _EL_   List<Boundary> areaList=new LinkedList<Boundary>(); _EL_   final BoundaryType childBoundaryType=boundaryTypeService.getBoundaryTypeByNameAndHierarchyType("Area",hType); _EL_   final Boundary parentBoundary=boundaryService.getBoundaryById(wardId); _EL_   areaList=new LinkedList(crossHeirarchyService.getCrossHierarchyChildrens(parentBoundary,childBoundaryType)); _EL_   LOGGER.info("***********Ajax AreaList: " + areaList.toString()); _EL_   return areaList; _EL_ } _EL_ 
 11	1738	False	private static String readName(DataInputStream dis,byte data[]) throws IOException { _EL_   int c=dis.readUnsignedByte(); _EL_   if ((c & 0xc0) == 0xc0) { _EL_     c=((c & 0x3f) << 8) + dis.readUnsignedByte(); _EL_     HashSet<Integer> jumps=new HashSet<Integer>(); _EL_     jumps.add(c); _EL_     return readName(data,c,jumps); _EL_   } _EL_   if (c == 0) { _EL_     return ""; _EL_   } _EL_   byte b[]=new byte[c]; _EL_   dis.readFully(b); _EL_   String s=IDN.toUnicode(new String(b)); _EL_   String t=readName(dis,data); _EL_   if (t.length() > 0) { _EL_     s=s + "." + t; _EL_   } _EL_   return s; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.001603805296833	2	1	10.107695185633041	2
 2	8.090728139943229	7	2	10.30058251209728	10

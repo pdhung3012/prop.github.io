@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4586	False	SSLSession toSession(byte[] data,String host,int port){ _EL_   ByteArrayInputStream bais=new ByteArrayInputStream(data); _EL_   DataInputStream dais=new DataInputStream(bais); _EL_   try { _EL_     int type=dais.readInt(); _EL_     if (type != OPEN_SSL) { _EL_       log(new AssertionError("Unexpected type ID: " + type)); _EL_       return null; _EL_     } _EL_     int length=dais.readInt(); _EL_     byte[] sessionData=new byte[length]; _EL_     dais.readFully(sessionData); _EL_     int count=dais.readInt(); _EL_     X509Certificate[] certs=new X509Certificate[count]; _EL_     for (int i=0; i < count; i++) { _EL_       length=dais.readInt(); _EL_       byte[] certData=new byte[length]; _EL_       dais.readFully(certData); _EL_       certs[i]=OpenSSLX509Certificate.fromX509Der(certData); _EL_     } _EL_     return new OpenSSLSessionImpl(sessionData,host,port,certs,this); _EL_   } _EL_  catch (  IOException e) { _EL_     log(e); _EL_     return null; _EL_   } _EL_ } _EL_ 
 11	4587	False	private void addDumpFile(){ _EL_   addDumpFile(dumpFile); _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.514639149734737	5	1	9.301675895653744	6 (correct)
 2	7.545214147526382	11	2	9.596597448334514	5

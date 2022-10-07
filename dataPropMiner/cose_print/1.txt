@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	1630	False	public TaskResourceRep unlinkTargetVolumesFromSnapshotSession(URI snapSessionURI,SnapshotSessionUnlinkTargetsParam param){ _EL_   return unlinkTargetVolumesFromSnapshotSession(snapSessionURI,param,OperationTypeEnum.UNLINK_SNAPSHOT_SESSION_TARGET); _EL_ } _EL_ 
 11	1631	False	private List reverse(List seq){ _EL_   LinkedList newSeq=new LinkedList(); _EL_   for (Iterator i=seq.iterator(); i.hasNext(); ) { _EL_     DirectedEdge de=(DirectedEdge)i.next(); _EL_     newSeq.addFirst(de.getSym()); _EL_   } _EL_   return newSeq; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.649453245968328	11	1	9.264007292422662	11
 2	8.74160956869732	8	2	9.457723732355202	6 (correct)

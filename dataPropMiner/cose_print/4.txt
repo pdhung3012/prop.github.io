@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4004	False	public void rotateZ(double theta){ _EL_   Matrix3D tmp=new Matrix3D(); _EL_   double c=Math.cos(theta); _EL_   double s=Math.sin(theta); _EL_   tmp.set(0,0,c); _EL_   tmp.set(0,1,-s); _EL_   tmp.set(1,0,s); _EL_   tmp.set(1,1,c); _EL_   preMultiply(tmp); _EL_ } _EL_ 
 11	4005	False	public ServiceHost startFactory(Service instanceService){ _EL_   final Class<? extends Service> serviceClass=instanceService.getClass(); _EL_   return startFactory(serviceClass,null); _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.079356268973444	7	1	7.95375331289273	7
 2	8.061011276800354	11	2	8.838996187833297	6 (correct)

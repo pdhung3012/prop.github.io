@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	2625	False	public static String hashKeyForDisk(String key){ _EL_   String cacheKey; _EL_   try { _EL_     final MessageDigest mDigest=MessageDigest.getInstance("MD5"); _EL_     mDigest.update(key.getBytes()); _EL_     cacheKey=bytesToHexString(mDigest.digest()); _EL_   } _EL_  catch (  NoSuchAlgorithmException e) { _EL_     cacheKey=String.valueOf(key.hashCode()); _EL_   } _EL_   return cacheKey; _EL_ } _EL_ 
 11	2626	False	public void recordTimestamp(){ _EL_   long curTimestamp=System.currentTimeMillis(); _EL_   if (usedFields > 0) { _EL_     long diff=curTimestamp - lastValue; _EL_     if (usedFields == diffs.length) { _EL_       long removedValue=diffs[curPosition]; _EL_       diffs[curPosition]=diff; _EL_       calculateNewAverage(removedValue,diff,false); _EL_       shiftEnd(); _EL_     } _EL_  else { _EL_       calculateNewAverage(0,diff,true); _EL_       diffs[curPosition]=diff; _EL_       shiftEnd(); _EL_     } _EL_   } _EL_  else   if (lastValue != -1) { _EL_     long diff=curTimestamp - lastValue; _EL_     currentAverage=0; _EL_     diffs[curPosition]=diff; _EL_     calculateNewAverage(0,diff,true); _EL_     shiftEnd(); _EL_   } _EL_   lastValue=curTimestamp; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.951794866338626	9	1	10.27956011047439	3
 2	8.291047389245408	3	2	10.38495130068238	9

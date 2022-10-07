@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	1584	False	private boolean scrollViewCanScrollVertically(ScrollView scrollView,int direction){ _EL_   final int offset=Math.max(0,scrollView.getScrollY()); _EL_   final int range=computeVerticalScrollRange(scrollView) - scrollView.getHeight(); _EL_   if (range == 0)   return false; _EL_   if (direction < 0) { _EL_     return offset > 0; _EL_   } _EL_  else { _EL_     return offset < range - 1; _EL_   } _EL_ } _EL_ 
 11	1585	False	public JarInfo loadJar() throws IOException { _EL_   ZipInputStream zis=null; _EL_   Manifest mf=null; _EL_   boolean empty=true; _EL_   try { _EL_     zis=new ZipInputStream(jarStream); _EL_     ZipEntry ent=null; _EL_     while ((ent=zis.getNextEntry()) != null) { _EL_       empty=false; _EL_       String name=ent.getName(); _EL_       if (Manifest.isManifestName(name)) { _EL_         ByteArrayOutputStream baos=new ByteArrayOutputStream(); _EL_         byte buffer[]=new byte[1024]; _EL_         for (; ; ) { _EL_           int len=zis.read(buffer); _EL_           if (len < 0) { _EL_             break; _EL_           } _EL_           baos.write(buffer,0,len); _EL_         } _EL_         byte[] buf=baos.toByteArray(); _EL_         mf=new Manifest(buf); _EL_       } _EL_     } _EL_   } _EL_  catch (  IOException ex) { _EL_     throw ex; _EL_   } _EL_ catch (  Throwable th) { _EL_     th.printStackTrace(); _EL_     throw new IOException("loadJar caught: " + th); _EL_   } _EL_  finally { _EL_     if (zis != null) { _EL_       try { _EL_         zis.close(); _EL_       } _EL_  catch (      Exception ex) { _EL_       } _EL_     } _EL_   } _EL_   if (empty) { _EL_     throw new IOException("JAR file is corrupt or empty"); _EL_   } _EL_   JarInfo ji=createJarInfo(mf); _EL_   return ji; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.586979794187922	5	1	12.574474433520757	2
 2	8.897200844088806	3	2	12.660027803622219	10

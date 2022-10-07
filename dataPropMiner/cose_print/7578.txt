@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	7115	False	public static int findEndTrimNewlineChars(CharSequence s){ _EL_   for (int i=s.length(); i > 0; ) { _EL_     if (s.charAt(i - 1) != '\n') { _EL_       return i; _EL_     } _EL_     i--; _EL_     if (i > 0 && s.charAt(i - 1) == '\r') { _EL_       i--; _EL_     } _EL_   } _EL_   return 0; _EL_ } _EL_ 
 11	7116	False	private void calcCoordinates(final float x,final float[][] Trm,float charSpacing){ _EL_   final float[][] trm=new float[3][3]; _EL_   for (int xx=0; xx < 3; xx++) { _EL_     System.arraycopy(Trm[xx],0,trm[xx],0,3); _EL_   } _EL_   x1=x; _EL_   x2=trm[2][0] - (charSpacing * trm[0][0]); _EL_   if (glyphData.isHorizontal()) { _EL_     if (trm[1][0] < 0) { _EL_       x1=x + trm[1][0] - (charSpacing * trm[0][0]); _EL_       x2=trm[2][0]; _EL_     } _EL_  else     if (trm[1][0] > 0) { _EL_       x1=x; _EL_       x2=trm[2][0]; _EL_     } _EL_   } _EL_  else   if (trm[1][0] > 0) { _EL_     x1=trm[2][0]; _EL_     x2=x + trm[1][0] - (charSpacing * trm[0][0]); _EL_   } _EL_  else   if (trm[1][0] < 0) { _EL_     x2=trm[2][0]; _EL_     x1=x + trm[1][0] - (charSpacing * trm[0][0]); _EL_   } _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.628854872519317	3	1	11.958321187937985	3
 2	7.965244920127131	6 (correct)	2	12.006473682803245	8

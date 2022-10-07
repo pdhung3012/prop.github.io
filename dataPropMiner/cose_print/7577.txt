@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	7046	False	static PotionType fromName(String name){ _EL_   for (  PotionTypeTable table : values()) { _EL_     if (name.equalsIgnoreCase(table.name))     return table.type; _EL_   } _EL_   return PotionType.valueOf(name.toUpperCase()); _EL_ } _EL_ 
 11	7047	False	public synchronized void removeCurlMesh(CurlMesh mesh){ _EL_   while (mCurlMeshes.remove(mesh))   ; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.000356937443867	11	1	9.113276387848824	11
 2	8.115269039549045	2	2	9.151101504070128	2

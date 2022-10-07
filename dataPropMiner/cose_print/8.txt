@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	7364	False	public void expandToObjectAndSelect(Object elementOrTreePath,int level){ _EL_   if (checkBusy()) { _EL_     return; _EL_   } _EL_   Object parent=getParentElement(elementOrTreePath); _EL_   if (((parent != null) && getExpandedState(parent)) || isRootElement(elementOrTreePath)) { _EL_     Widget w=internalGetWidgetToSelect(elementOrTreePath); _EL_     if (null != w) { _EL_       List<Object> selectionList=new ArrayList<>(); _EL_       selectionList.add(w); _EL_       setSelection(selectionList); _EL_       objectToSelect.set(null); _EL_     } _EL_  else { _EL_       objectToSelect.set(elementOrTreePath); _EL_     } _EL_   } _EL_  else { _EL_     objectToSelect.set(elementOrTreePath); _EL_     List<Object> objectsToExpand=createObjectList(parent,new ArrayList<>()); _EL_     if (!objectsToExpand.isEmpty()) { _EL_       objectsToBeExpanded.addAll(objectsToExpand); _EL_       Widget w=internalExpand(elementOrTreePath,true); _EL_       if (w != null) { _EL_         internalExpandToLevel(w,level); _EL_       } _EL_     } _EL_  else { _EL_       Widget w=internalGetWidgetToSelect(elementOrTreePath); _EL_       if (null != w) { _EL_         List<Object> selectionList=new ArrayList<>(); _EL_         selectionList.add(w); _EL_         setSelection(selectionList); _EL_         objectToSelect.set(null); _EL_       } _EL_     } _EL_   } _EL_ } _EL_ 
 11	7365	False	public void appendCell(float value){ _EL_   appendCell(String.valueOf(value)); _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.730069876924204	3	1	9.863447800662337	3
 2	7.874705688538239	1	2	9.882309516009377	1

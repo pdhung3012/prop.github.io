@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	79	False	protected void create_y_axis(int i){ _EL_   Log.e("index vlaue",i + ""); _EL_   float ver_height=((graphheight / label_size) * i) + border; _EL_   if (i == largest_value_set.size() - 1)   canvas.drawLine(horstart,ver_height,width - (border),ver_height,paint); _EL_  else   canvas.drawLine(horstart,ver_height,border,ver_height,paint); _EL_   paint.setColor(Color.BLACK); _EL_   int Y_labels=(int)size - 1 - i; _EL_   String y_labels=String.format("%.1f",Y_labels * y_axis_ratio); _EL_   paint.setTextAlign(Paint.Align.RIGHT); _EL_   canvas.drawText(y_labels,horstart - 15,ver_height - 10,paint); _EL_   paint.setTextAlign(Paint.Align.LEFT); _EL_ } _EL_ 
 11	80	False	public long max(){ _EL_   return deltaMax.get(); _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.877989524382809	11	1	9.13081808063404	11
 2	8.382823851835088	7	2	9.61470046406081	7

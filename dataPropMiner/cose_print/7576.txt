@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4699	False	private void injectContent(Inject injectContent) throws IOException, MojoExecutionException { _EL_   Map<Pattern,File> contents=getContentsMap(injectContent.getContents()); _EL_   File tmpFile=ioFactory.createTemporaryFile(injectContent.getDestinationFile()); _EL_   BufferedReader reader=null; _EL_   BufferedWriter writer=null; _EL_   try { _EL_     reader=ioFactory.newReader(injectContent.getDestinationFile()); _EL_     writer=ioFactory.newWriter(tmpFile); _EL_     String line; _EL_     while ((line=reader.readLine()) != null) { _EL_       File content=doesLineMatchId(contents,line); _EL_       if (content != null) { _EL_         ioFactory.writeContent(writer,content,getContentConverter(injectContent)); _EL_       } _EL_  else { _EL_         ioFactory.writeLine(writer,line); _EL_       } _EL_     } _EL_   } _EL_   finally { _EL_     if (reader != null) { _EL_       reader.close(); _EL_     } _EL_     if (writer != null) { _EL_       writer.flush(); _EL_       writer.close(); _EL_     } _EL_   } _EL_   ioFactory.moveTo(tmpFile,injectContent.getDestinationFile()); _EL_ } _EL_ 
 11	4700	False	public static <E>boolean isEmpty(CharSequence c){ _EL_   return (c == null) || c.length() == 0; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.986032531939505	6 (correct)	1	28.795110519446283	2
 2	8.261009530158717	7	2	29.12471559855158	8

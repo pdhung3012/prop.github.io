@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	368	False	private static SSLSocketFactory trustAllHosts(HttpsURLConnection connection){ _EL_   SSLSocketFactory oldFactory=connection.getSSLSocketFactory(); _EL_   try { _EL_     SSLContext sc=SSLContext.getInstance("TLS"); _EL_     sc.init(null,trustAllCerts,new java.security.SecureRandom()); _EL_     SSLSocketFactory newFactory=sc.getSocketFactory(); _EL_     connection.setSSLSocketFactory(newFactory); _EL_   } _EL_  catch (  Exception e) { _EL_     Log.e(LOG_TAG,e.getMessage(),e); _EL_   } _EL_   return oldFactory; _EL_ } _EL_ 
 11	369	False	public final double sampleMax(){ _EL_   return _activeCountMax.getAndSet(_activeCount.get()); _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.192107621242986	11	1	8.048464521941801	11
 2	7.379555024551435	1	2	8.282447094465669	6 (correct)

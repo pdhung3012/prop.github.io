@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4294	False	protected void newFastClockMinute(){ _EL_   for (int i=delayedTrains.size() - 1; i >= 0; i--) { _EL_     ActiveTrain at=delayedTrains.get(i); _EL_     if ((!at.getStarted()) && at.getDelayedStart() != ActiveTrain.NODELAY) { _EL_       if (at.getDelayedStart() == ActiveTrain.TIMEDDELAY) { _EL_         if (isFastClockTimeGE(at.getDepartureTimeHr(),at.getDepartureTimeMin())) { _EL_           at.setStarted(); _EL_           delayedTrains.remove(i); _EL_           if (_AutoAllocate) { _EL_             autoAllocate.scanAllocationRequestList(allocationRequests); _EL_           } _EL_         } _EL_       } _EL_     } _EL_  else     if (at.getStarted() && at.getStatus() == ActiveTrain.READY && at.reachedRestartPoint()) { _EL_       if (isFastClockTimeGE(at.getRestartDepartHr(),at.getRestartDepartMin())) { _EL_         at.restart(); _EL_         delayedTrains.remove(i); _EL_         if (_AutoAllocate) { _EL_           autoAllocate.scanAllocationRequestList(allocationRequests); _EL_         } _EL_       } _EL_     } _EL_   } _EL_ } _EL_ 
 11	4295	False	public void add(final CreatureRespawnPoint point){ _EL_   respawnPoints.add(point); _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.363196878274173	10	1	9.359759569430613	11
 2	7.489739461889957	11	2	9.423248484401626	10

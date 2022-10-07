@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	2742	False	private void writeJarPostResource(Element postResourceEl,String path){ _EL_   postResourceEl.setAttribute("className",JAR_RESOURCE_SET); _EL_   postResourceEl.setAttribute("base",path.replace("&","&amp;")); _EL_ } _EL_ 
 11	2743	False	public void closeFile() throws IOException { _EL_   file.close(); _EL_   file=null; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.47087502447488	11	1	10.389548936096606	11
 2	8.5282628294502	1	2	10.441660871776497	1

@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	7330	False	public static void readAndCloseStream(InputStream is){ _EL_   final byte[] bytes=new byte[DEFAULT_BUFFER_SIZE]; _EL_   try { _EL_     while (is.read(bytes,0,DEFAULT_BUFFER_SIZE) != -1)     ; _EL_   } _EL_  catch (  IOException ignored) { _EL_   } _EL_  finally { _EL_     closeSilently(is); _EL_   } _EL_ } _EL_ 
 11	7331	False	private static boolean withinTwo(INode n,INode goal){ _EL_   DoubleLinkedList<IMove> moves=n.validMoves(); _EL_   for (Iterator<IMove> it=moves.iterator(); it.hasNext(); ) { _EL_     IMove move=it.next(); _EL_     INode successor=n.copy(); _EL_     move.execute(successor); _EL_     if (withinOne(successor,goal)) { _EL_       return true; _EL_     } _EL_   } _EL_   return false; _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.37536176228296	1	1	11.595655456634812	1
 2	7.872094527401534	7	2	11.679786059894296	11

@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	3097	False	public static void removeObjectAtOffset(Object[] sourceArray,Object[] destinationArray,int offset){ _EL_   System.arraycopy(sourceArray,0,destinationArray,0,offset); _EL_   System.arraycopy(sourceArray,offset + 1,destinationArray,offset,sourceArray.length - offset - 1); _EL_ } _EL_ 
 11	3098	False	@SuppressWarnings("unchecked") public DictionaryAdapter(Context context,File dbPath,String dbName,String defaultTable){ _EL_   mContext=context; _EL_   mDbName=dbName; _EL_   mDefaultTable=defaultTable; _EL_   mDbPath=dbPath; _EL_   mDbFile=new File(dbPath,mDbName); _EL_   if (mDbFile.exists()) { _EL_     open(); _EL_   } _EL_ } _EL_ 
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.43863438130199	2	1	10.058570642765991	9
 2	8.503602589942872	9	2	10.07851371026512	2
