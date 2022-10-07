@@ -153,7 +153,7 @@ function loadBody2(){
     strDisplayInstruction="Query and best candidates' information\nResults in Top-K";
     strDisplayInstruction+="\nStep 1 (get nl-pl embbedding (like GraphCodeBERT) of query and candidates with dimensions = 768)"
     strDisplayInstruction+="\nStep 2.1. (Get tree representation of query)"
-    strDisplayInstruction+="\nStep 2.2. (Get expected properties from tree representation of query)"
+    strDisplayInstruction+="\nStep 2.2. (Get expected properties from tree representation of query - Abstract Syntax Tree)"
     strDisplayInstruction+="\nStep 3.1. (Get fastText representation of candidates - dimensions = 100 )"
     strDisplayInstruction+="\nStep 3.2. (PropMiner predict properties - dimensions = 10)"
     strDisplayInstruction+="\nStep 4. (Augment nl-pl embedding of query with expected properties; Augment nl-pl embedding of candidates with predicted properties; Compare by euclid distance)";
