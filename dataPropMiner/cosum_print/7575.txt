@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	514	False	this = this and other
 11	515	False	test for equality between the specified object and this object .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.501795565702414	1	1	8.713521975514135	1
 2	8.938964341167392	6 (correct)	2	9.184990323095816	9

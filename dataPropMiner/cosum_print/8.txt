@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	6976	False	loads a xml document from a file and returns the corresponding dom document .
 11	6977	False	returns a new comment attached to an empty node
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	10.166768150639042	9	1	10.305627021615278	9
 2	10.20748139775213	8	2	10.481037877615728	6 (correct)

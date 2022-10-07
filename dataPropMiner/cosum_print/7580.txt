@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	6686	False	output property summary table .
 11	6687	False	deletes any empty folder from the db .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.377098646024516	6 (correct)	1	13.474751252250536	5
 2	7.4623589003075494	11	2	14.127861547175803	3

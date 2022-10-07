@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4460	False	create the uriname object with the specified name .
 11	4461	False	adds a parameterized view to the stream .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	9.121850627423909	5	1	10.096370500323715	5
 2	9.419220986611897	9	2	10.473254785587434	6 (correct)

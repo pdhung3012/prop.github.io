@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	5789	False	implement all methods along with their respective name & class .
 11	5790	False	cleans up the filename from illegal characters and truncates it to the length of bytes specified .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.563370056318119	6 (correct)	1	11.546423526858792	1
 2	7.71563238960159	1	2	11.565661148825638	3

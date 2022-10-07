@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	221	False	transform an xsl - fo streamsource to the specified output format .
 11	222	False	splits the input string based on the default delimiter , and also escapes delimiter .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	9.225391821581262	7	1	11.989225104538503	3
 2	9.232497850310066	1	2	12.264683086606256	5

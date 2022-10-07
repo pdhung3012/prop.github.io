@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4630	False	reads characters into a portion of an array .
 11	4631	False	reads a single character .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.241906108788864	10	1	8.533330921046959	10
 2	8.315730563583395	2	2	8.677861051315329	2

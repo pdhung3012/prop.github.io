@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	1248	False	parses out the cluster name from the combined cluster / cg name .
 11	1249	False	helper http function to get list of my service cards .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.325519112594177	1	1	14.49813620798846	11
 2	7.486134281502932	3	2	14.531007373765124	10

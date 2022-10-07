@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	49	False	computes the " interface hash " of the stub / skeleton pair for this remote implementation class .
 11	50	False	copy the contents of the given byte array to the given outputstream .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	9.178284227052584	9	1	9.754153857340741	6 (correct)
 2	9.237427009355546	4	2	9.864018942756287	1

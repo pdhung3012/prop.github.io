@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	2631	False	the size of pending workers
 11	2632	False	inserts the specified component into the menu at a given position .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.084680391925547	6 (correct)	1	8.377614958590714	1
 2	8.106922913289424	9	2	8.429113187551309	3

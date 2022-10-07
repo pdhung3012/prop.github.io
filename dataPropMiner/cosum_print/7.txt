@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	6740	False	creates a new dcheckupdate dialog .
 11	6741	False	simple , original brics implementation of brzozowski minimize ( )
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.69769251390397	10	1	8.558888600070796	6 (correct)
 2	7.745734071610119	4	2	8.800916969864346	8

@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	7128	False	register an extra valid subject .
 11	7129	False	trims a line and removes comments
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.5107634760197035	1	1	9.579167096730838	6 (correct)
 2	7.5658279072185906	8	2	9.588998473836162	4

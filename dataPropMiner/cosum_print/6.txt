@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	5872	False	closes this strategy and releases any zookeeper resources ; but keeps the zookeeper instance open
 11	5873	False	returns true if , at this time , the object will accept a connection via the named event
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.817743104388691	3	1	9.971335547713462	3
 2	7.821428814087016	11	2	10.275900465121655	6 (correct)

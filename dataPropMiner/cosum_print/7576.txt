@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	665	False	returns an image where the input image is centered .
 11	666	False	writes a start tag to the output .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	8.199642161058817	11	1	8.598497926794737	11
 2	8.214163670854402	6 (correct)	2	8.770649471599997	9

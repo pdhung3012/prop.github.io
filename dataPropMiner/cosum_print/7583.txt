@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	7184	False	adds multiples of the specified ingredient .
 11	7185	False	returns the order string produced by this object .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	9.464347109137194	6 (correct)	1	9.649355208731613	11
 2	9.535541834408699	11	2	9.929303413675317	2

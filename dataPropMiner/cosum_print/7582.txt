@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	6605	False	writes a long to the specified position .
 11	6606	False	delete the replication set
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.532412821802132	7	1	10.949420424281787	3
 2	8.067020238546855	6 (correct)	2	10.982684102061327	7

@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	3954	False	starts a dialog that requests a password to the user to protect a share link .
 11	3955	False	allocate objects until death
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.871987359053342	6 (correct)	1	22.76644196417629	10
 2	8.460495642840717	3	2	22.792192055520317	1

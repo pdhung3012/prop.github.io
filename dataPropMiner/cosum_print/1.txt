@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	1158	False	looks up an attribute key by element and local name .
 11	1159	False	data provided by a user ; this data needs to be validated and processed .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.213734673213119	5	1	9.932979784037645	6 (correct)
 2	7.283477463521307	10	2	10.03601886378596	10

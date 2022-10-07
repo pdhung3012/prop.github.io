@@ -17,9 +17,7 @@ CodeID	IndexInDatabase	isCorrect	CandText
 10	4529	False	expands the cluster to include density - reachable items .
 11	4530	False	this implementation looks for the longest matching string .
 
-
 Results:
-
 Org-Rank	Org-Score	Org-ID	Aug-Rank	Aug-Score	Aug-ID
 1	7.760187359041879	4	1	10.40570964321125	8
 2	7.820536201748943	5	2	10.491976234175363	6 (correct)
