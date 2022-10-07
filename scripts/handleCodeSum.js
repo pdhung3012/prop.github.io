@@ -18,7 +18,7 @@ let arrRealIds=[]
 let arrDistances=[]
 let currentIndexQuery=-1
 // async function loadString(){
-//     [promiseAllText,promiseAllP1,promiseAllRealId]=[await downloadFile(urlOnlineDomain+'dataPropMiner/cacheQueries/cose_tlcodesum_all.txt'),await downloadFile(urlOnlineDomain+'dataPropMiner/cacheQueries/cose_tlcodesum_p1.all.txt'),await downloadFile(urlOnlineDomain+'dataPropMiner/cacheQueries/cose_tlcodesum_realId.all.txt')];
+//     [promiseAllText,promiseAllP1,promiseAllRealId]=[await downloadFile(urlOnlineDomain+'dataPropMiner/cacheQueries/cosum_tlcodesum_all.txt'),await downloadFile(urlOnlineDomain+'dataPropMiner/cacheQueries/cosum_tlcodesum_p1.all.txt'),await downloadFile(urlOnlineDomain+'dataPropMiner/cacheQueries/cosum_tlcodesum_realId.all.txt')];
 //     // promiseAllP1=;
 //     // promiseAllRealId=;
 //     [arrTexts,arrP1s,arrRealIds]=[await promiseAllText.split('\n'),await promiseAllP1.split('\n'),await promiseAllRealId.split('\n')]
@@ -29,7 +29,7 @@ let currentIndexQuery=-1
 //     lstTextLost=[]
 // }
 function showCaseWon(){
-    // [promiseResult]=[await downloadFile(urlOnlineDomain+'dataPropMiner/cose_print/0.txt')];
+    // [promiseResult]=[await downloadFile(urlOnlineDomain+'dataPropMiner/cosum_print/0.txt')];
     // promiseAllP1=;
     // promiseAllRealId=;
     // console.log(promiseResult)
@@ -39,7 +39,7 @@ function showCaseWon(){
     var optionWon = selectWon.options[selectWon.selectedIndex];
     currentIndexQuery=optionWon.value;
 
-    document.getElementById('iframeResult').src=urlOnlineDomain+'dataPropMiner/cose_print/'+currentIndexQuery+'.txt';
+    document.getElementById('iframeResult').src=urlOnlineDomain+'dataPropMiner/cosum_print/'+currentIndexQuery+'.txt';
     // document.getElementById('iframeResult').setStyles({ 'overflow': 'auto' });
     document.getElementById('txtInputQuery').value=optionWon.text;
     // promiseResult.then(document.getElementById('iframeResult').value)
@@ -47,7 +47,7 @@ function showCaseWon(){
 }
 
 function showCaseLost(){
-    // [promiseResult]=[await downloadFile(urlOnlineDomain+'dataPropMiner/cose_print/0.txt')];
+    // [promiseResult]=[await downloadFile(urlOnlineDomain+'dataPropMiner/cosum_print/0.txt')];
     // promiseAllP1=;
     // promiseAllRealId=;
     // console.log(promiseResult)
@@ -57,7 +57,7 @@ function showCaseLost(){
     var optionLost = selectLost.options[selectLost.selectedIndex];
     currentIndexQuery=optionLost.value;
 
-    document.getElementById('iframeResult').src=urlOnlineDomain+'dataPropMiner/cose_print/'+currentIndexQuery+'.txt';
+    document.getElementById('iframeResult').src=urlOnlineDomain+'dataPropMiner/cosum_print/'+currentIndexQuery+'.txt';
     // document.getElementById('iframeResult').setStyles({ 'overflow': 'auto' });
     document.getElementById('txtInputQuery').value=optionLost.text;
     // promiseResult.then(document.getElementById('iframeResult').value)
@@ -74,7 +74,7 @@ function performSearch(){
             currentIndexQuery=index;
         }
     }
-    document.getElementById('iframeResult').src=urlOnlineDomain+'dataPropMiner/cose_print/'+currentIndexQuery+'.txt';
+    document.getElementById('iframeResult').src=urlOnlineDomain+'dataPropMiner/cosum_print/'+currentIndexQuery+'.txt';
     // document.getElementById('iframeResult').setStyles({ 'overflow': 'auto' });
     // document.getElementById('txtInputQuery').value=optionLost.text;
 
@@ -124,11 +124,11 @@ function editDistance(s1, s2) {
 
 
 function loadBody2(){
-    // console.log(datacose['realIds'][0]);
-    arrTexts=datacose['realIds']
-    arrP1s=datacose['textP1']
-    arrRealIds=datacose['realIds']
-    arrDistances=datacose['distance']
+    // console.log(datacosum['realIds'][0]);
+    arrTexts=datacosum['realIds']
+    arrP1s=datacosum['textP1']
+    arrRealIds=datacosum['realIds']
+    arrDistances=datacosum['distance']
     var selectWon = document.getElementById('selectWon');
     var selectLost = document.getElementById('selectLost');
     strDisplayWon='';
@@ -152,10 +152,10 @@ function loadBody2(){
     // txtResultGuide
     strDisplayInstruction="Query and best candidates' information\nResults in Top-K";
     strDisplayInstruction+="\nStep 1 (get nl-pl embbedding (like GraphCodeBERT) of query and candidates with dimensions = 768)"
-    strDisplayInstruction+="\nStep 2.1. (Get tree representation of query - Natural Language Parse Tree)"
+    strDisplayInstruction+="\nStep 2.1. (Get tree representation of query)"
     strDisplayInstruction+="\nStep 2.2. (Get expected properties from tree representation of query)"
     strDisplayInstruction+="\nStep 3.1. (Get fastText representation of candidates - dimensions = 100 )"
-    strDisplayInstruction+="\nStep 3.2. (PropMiner predict properties - dimensions = 15)"
+    strDisplayInstruction+="\nStep 3.2. (PropMiner predict properties - dimensions = 10)"
     strDisplayInstruction+="\nStep 4. (Augment nl-pl embedding of query with expected properties; Augment nl-pl embedding of candidates with predicted properties; Compare by euclid distance)";
     document.getElementById('txtResultGuide').value=strDisplayInstruction;
 

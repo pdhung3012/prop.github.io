@@ -4,6 +4,8 @@
 <title>PropMiner</title>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="styles/layout.css" type="text/css">
+<script  src="scripts/datacosum.js"></script>
+<script  src="scripts/handleCodeSum.js"></script>
 <!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
 </head>
 <body>
@@ -27,7 +29,55 @@
 <div class="wrapper row2">
   <div id="container" class="clear">
     <section id="slider">
-    <h3>Code Summarization</h3>
+        <form class="" action="#" method="post">
+        <h3>Code Suummarization</h3>
+        <p>For Code Summarization, we do an experiment on the dataset of <b>7584</b> pairs of comment and code of the <b>TLCodeSum</b> dataset in the clean version of CAT benchmark (<a  href="https://arxiv.org/abs/2207.05579">See paper</a>). We evaluate the effectiveness of PropMiner to the original embedding of GraphCodeBERT in this evaluation. We use Top-K accuracy as the evaluation metric for each code search phrase. In each query and candidate, we display them by single line (we mark '\n' character as ' _EL_ ' character).</p>
+        <p><b>Result (RQ2)</b>: GraphCodeBERT+PropMiner won <b>1112/7584</b> cases, while the original GraphCodeBERT won <b>450/7584</b> cases, leads our Mean Reciprocal Rank to be 74.65\ over 76.65% of GraphCodeBERT on TLCodeSum dataset</p>
+        <p>We use <a  href="https://github.com/microsoft/CodeBERT/issues/112">this tutorial</a> for extraction comments and code snippets' embedding of GraphCodeBERT. The default dimension of vector provided by GrraphCodeBERT is <b>768</b></p>
+        <p>You can input the text as code comment on the input box, or you can load the cached  queries we analyzed by two combo boxes above. In the query's result, we will show you the results of the cached query that is the most similar to your input.</p>
+        <div>
+
+                <table>
+                    <tr>
+                        <td>Input query as code snippet: <input id="btnSearch" type="button" name="btnSearch" onclick="performSearch();" value="Search"/></td>
+                    </tr>
+                    <tr>
+                        <td><textarea id="txtInputQuery" name="idInputQuery" rows="10" cols="115"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td style="color:green;">Queries that GraphCodeBERT+PropMiner won: <input id="btnViewWon" type="button" name="btnViewWon" onclick="showCaseWon();" value="View Results"/><br/>
+                            <select name="selectWon" id="selectWon" style="max-width:900px;">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color:red;">Queries that original GraphCodeBERT won: <input id="btnViewLost" type="button" name="btnViewLost" onclick="showCaseLost();" value="View Results"/><br/>
+                            <select name="selectLost" id="selectLost" style="max-width:900px;">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Parts of Results:</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea id="txtResultGuide" name="idSearchResult" rows="10" cols="115" readonly="True" ></textarea>
+                            <!-- <iframe id="iframeResult" style="overflow-y:hidden;overflow-x:scroll;" src="" width="920px" height="800"></iframe> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Search Results (with Steps by Steps):</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <!-- <textarea id="txtSearchResult" name="idSearchResult" rows="50" cols="115"></textarea> -->
+                            <iframe id="iframeResult" style="overflow-y:hidden;overflow-x:scroll;" src="" width="920px" height="800"></iframe>
+                        </td>
+                    </tr>
+                </table>
+
+        <div>
+            </form>
     </section>
   </div>
 </div>

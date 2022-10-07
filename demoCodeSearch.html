@@ -39,28 +39,40 @@
 
                 <table>
                     <tr>
-                        <td>Input query as comment: <input id="btnSearch" type="button" name="btnSearch" value="Search"/></td>
+                        <td>Input query as comment: <input id="btnSearch" type="button" name="btnSearch" onclick="performSearch();" value="Search"/></td>
                     </tr>
                     <tr>
                         <td><textarea id="txtInputQuery" name="idInputQuery" rows="10" cols="115"></textarea></td>
                     </tr>
                     <tr>
-                        <td style="color:green;">Queries that GraphCodeBERT+PropMiner won: <input id="btnViewWon" type="button" name="btnViewWon" value="View Results"/><br/>
+                        <td style="color:green;">Queries that GraphCodeBERT+PropMiner won: <input id="btnViewWon" type="button" name="btnViewWon" onclick="showCaseWon();" value="View Results"/><br/>
                             <select name="selectWon" id="selectWon" style="max-width:900px;">
                             </select>
                         </td>
                     </tr>
                     <tr>
-                        <td style="color:red;">Queries that original GraphCodeBERT won: <input id="btnViewLost" type="button" name="btnViewLost" value="View Results"/><br/>
+                        <td style="color:red;">Queries that original GraphCodeBERT won: <input id="btnViewLost" type="button" name="btnViewLost" onclick="showCaseLost();" value="View Results"/><br/>
                             <select name="selectLost" id="selectLost" style="max-width:900px;">
                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Parts of Results:</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea id="txtResultGuide" name="idSearchResult" rows="10" cols="115" readonly="True" ></textarea>
+                            <!-- <iframe id="iframeResult" style="overflow-y:hidden;overflow-x:scroll;" src="" width="920px" height="800"></iframe> -->
                         </td>
                     </tr>
                     <tr>
                         <td>Search Results (with Steps by Steps):</td>
                     </tr>
                     <tr>
-                        <td><textarea id="txtSearchResult" name="idSearchResult" rows="50" cols="115"></textarea></td>
+                        <td>
+                            <!-- <textarea id="txtSearchResult" name="idSearchResult" rows="50" cols="115"></textarea> -->
+                            <iframe id="iframeResult" style="overflow-y:hidden;overflow-x:scroll;" src="" width="920px" height="800"></iframe>
+                        </td>
                     </tr>
                 </table>
 
