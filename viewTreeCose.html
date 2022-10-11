@@ -1,0 +1,262 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <body>
+  <script  src="scripts/cose_tree/0.js"></script>
+<script  src="scripts/cose_tree/1.js"></script>
+<script  src="scripts/cose_tree/2.js"></script>
+<script  src="scripts/cose_tree/3.js"></script>
+<script  src="scripts/cose_tree/4.js"></script>
+<script  src="scripts/cose_tree/5.js"></script>
+<script  src="scripts/cose_tree/6.js"></script>
+<script  src="scripts/cose_tree/7.js"></script>
+<script  src="scripts/cose_tree/8.js"></script>
+<script  src="scripts/cose_tree/9.js"></script>
+<script  src="scripts/cose_tree/10.js"></script>
+<script  src="scripts/cose_tree/11.js"></script>
+<script  src="scripts/cose_tree/12.js"></script>
+<script  src="scripts/cose_tree/13.js"></script>
+<script  src="scripts/cose_tree/14.js"></script>
+<script  src="scripts/cose_tree/15.js"></script>
+<script  src="scripts/cose_tree/16.js"></script>
+<script  src="scripts/cose_tree/17.js"></script>
+<script  src="scripts/cose_tree/18.js"></script>
+<script  src="scripts/cose_tree/19.js"></script>
+<script  src="scripts/cose_tree/20.js"></script>
+<script  src="scripts/cose_tree/21.js"></script>
+<script  src="scripts/cose_tree/22.js"></script>
+<script  src="scripts/cose_tree/23.js"></script>
+<script  src="scripts/cose_tree/24.js"></script>
+<script  src="scripts/cose_tree/25.js"></script>
+<script  src="scripts/cose_tree/26.js"></script>
+<script  src="scripts/cose_tree/27.js"></script>
+<script  src="scripts/cose_tree/28.js"></script>
+<script  src="scripts/cose_tree/29.js"></script>
+<script  src="scripts/cose_tree/30.js"></script>
+<script  src="scripts/cose_tree/31.js"></script>
+<script  src="scripts/cose_tree/32.js"></script>
+<script  src="scripts/cose_tree/33.js"></script>
+<script  src="scripts/cose_tree/34.js"></script>
+<script  src="scripts/cose_tree/35.js"></script>
+<script  src="scripts/cose_tree/36.js"></script>
+<script  src="scripts/cose_tree/37.js"></script>
+<script  src="scripts/cose_tree/38.js"></script>
+<script  src="scripts/cose_tree/39.js"></script>
+<script  src="scripts/cose_tree/40.js"></script>
+<script  src="scripts/cose_tree/41.js"></script>
+<script  src="scripts/cose_tree/42.js"></script>
+<script  src="scripts/cose_tree/43.js"></script>
+<script  src="scripts/cose_tree/44.js"></script>
+<script  src="scripts/cose_tree/45.js"></script>
+<script  src="scripts/cose_tree/46.js"></script>
+<script  src="scripts/cose_tree/47.js"></script>
+<script  src="scripts/cose_tree/48.js"></script>
+<script  src="scripts/cose_tree/49.js"></script>
+<script  src="scripts/cose_tree/50.js"></script>
+<script  src="scripts/cose_tree/51.js"></script>
+<script  src="scripts/cose_tree/52.js"></script>
+<script  src="scripts/cose_tree/53.js"></script>
+<script  src="scripts/cose_tree/54.js"></script>
+<script  src="scripts/cose_tree/55.js"></script>
+<script  src="scripts/cose_tree/56.js"></script>
+<script  src="scripts/cose_tree/57.js"></script>
+<script  src="scripts/cose_tree/58.js"></script>
+<script  src="scripts/cose_tree/59.js"></script>
+<script  src="scripts/cose_tree/60.js"></script>
+<script  src="scripts/cose_tree/61.js"></script>
+<script  src="scripts/cose_tree/62.js"></script>
+<script  src="scripts/cose_tree/63.js"></script>
+<script  src="scripts/cose_tree/64.js"></script>
+<script  src="scripts/cose_tree/65.js"></script>
+<script  src="scripts/cose_tree/66.js"></script>
+<script  src="scripts/cose_tree/67.js"></script>
+<script  src="scripts/cose_tree/68.js"></script>
+<script  src="scripts/cose_tree/69.js"></script>
+<script  src="scripts/cose_tree/70.js"></script>
+<script  src="scripts/cose_tree/71.js"></script>
+<script  src="scripts/cose_tree/72.js"></script>
+<script  src="scripts/cose_tree/73.js"></script>
+<script  src="scripts/cose_tree/74.js"></script>
+<script  src="scripts/cose_tree/75.js"></script>
+  <script src="https://unpkg.com/gojs@2.2.16/release/go.js"></script>
+  <div id="allSampleContent" class="p-4 w-full">
+    <script id="code">
+    function init() {
+
+      // Since 2.2 you can also author concise templates with method chaining instead of GraphObject.make
+      // For details, see https://gojs.net/latest/intro/buildingObjects.html
+      const $ = go.GraphObject.make;  // for conciseness in defining templates
+
+      myFullDiagram =
+        $(go.Diagram, "fullDiagram",  // each diagram refers to its DIV HTML element by id
+          {
+            initialAutoScale: go.Diagram.UniformToFill,  // automatically scale down to show whole tree
+            maxScale: 0.25,
+            contentAlignment: go.Spot.Center,  // center the tree in the viewport
+            isReadOnly: true,  // don't allow user to change the diagram
+            "animationManager.isEnabled": false,
+            layout: $(go.TreeLayout,
+              { angle: 90, sorting: go.TreeLayout.SortingAscending }),
+            maxSelectionCount: 1,  // only one node may be selected at a time in each diagram
+            // when the selection changes, update the myLocalDiagram view
+            "ChangedSelection": showLocalOnFullClick
+          });
+
+      myLocalDiagram =  // this is very similar to the full Diagram
+        $(go.Diagram, "localDiagram",
+          {
+            autoScale: go.Diagram.UniformToFill,
+            contentAlignment: go.Spot.Center,
+            isReadOnly: true,
+            layout: $(go.TreeLayout,
+              { angle: 90, sorting: go.TreeLayout.SortingAscending }),
+            "LayoutCompleted": e => {
+              var sel = e.diagram.selection.first();
+              if (sel !== null) myLocalDiagram.scrollToRect(sel.actualBounds);
+            },
+            maxSelectionCount: 1,
+            // when the selection changes, update the contents of the myLocalDiagram
+            "ChangedSelection": showLocalOnLocalClick
+          });
+
+      // Define a node template that is shared by both diagrams
+      var myNodeTemplate =
+        $(go.Node, "Auto",
+          { locationSpot: go.Spot.Center },
+          new go.Binding("text", "key", go.Binding.toString),  // for sorting
+          $(go.Shape, "Rectangle",
+            new go.Binding("fill", "fill"),
+            { stroke: null }),
+          $(go.TextBlock,
+            { margin: 5 },
+            new go.Binding("text"))
+        );
+      myFullDiagram.nodeTemplate = myNodeTemplate;
+      myLocalDiagram.nodeTemplate = myNodeTemplate;
+
+      // Define a basic link template, not selectable, shared by both diagrams
+      var myLinkTemplate =
+        $(go.Link,
+          { routing: go.Link.Normal, selectable: false },
+          $(go.Shape,
+            { strokeWidth: 1 })
+        );
+      myFullDiagram.linkTemplate = myLinkTemplate;
+      myLocalDiagram.linkTemplate = myLinkTemplate;
+
+      // Create the full tree diagram
+      setupDiagram();
+
+      // Create a part in the background of the full diagram to highlight the selected node
+      highlighter =
+        $(go.Part, "Auto",
+          {
+            layerName: "Background",
+            selectable: false,
+            isInDocumentBounds: false,
+            locationSpot: go.Spot.Center
+          },
+          $(go.Shape, "Ellipse",
+            {
+              fill: $(go.Brush, "Radial", { 0.0: "yellow", 1.0: "white" }),
+              stroke: null,
+              desiredSize: new go.Size(400, 400)
+            })
+        );
+      myFullDiagram.add(highlighter);
+
+      // Start by focusing the diagrams on the node at the top of the tree.
+      // Wait until the tree has been laid out before selecting the root node.
+      myFullDiagram.addDiagramListener("InitialLayoutCompleted", e => {
+        var node0 = myFullDiagram.findPartForKey(0);
+        if (node0 !== null) node0.isSelected = true;
+        showLocalOnFullClick();
+      });
+    }
+
+    // Make the corresponding node in the full diagram to that selected in the local diagram selected,
+    // then call showLocalOnFullClick to update the local diagram.
+    function showLocalOnLocalClick() {
+      var selectedLocal = myLocalDiagram.selection.first();
+      if (selectedLocal !== null) {
+        // there are two separate Nodes, one for each Diagram, but they share the same key value
+        myFullDiagram.select(myFullDiagram.findPartForKey(selectedLocal.data.key));
+      }
+    }
+
+    function showLocalOnFullClick() {
+      var node = myFullDiagram.selection.first();
+      if (node !== null) {
+        // make sure the selected node is in the viewport
+        myFullDiagram.scrollToRect(node.actualBounds);
+        // move the large yellow node behind the selected node to highlight it
+        highlighter.location = node.location;
+        // create a new model for the local Diagram
+        var model = new go.TreeModel();
+        // add the selected node and its children and grandchildren to the local diagram
+        var nearby = node.findTreeParts(3);  // three levels of the (sub)tree
+        // add parent and grandparent
+        var parent = node.findTreeParentNode();
+        if (parent !== null) {
+          nearby.add(parent);
+          var grandparent = parent.findTreeParentNode();
+          if (grandparent !== null) {
+            nearby.add(grandparent);
+          }
+        }
+        // create the model using the same node data as in myFullDiagram's model
+        nearby.each(n => {
+          if (n instanceof go.Node) model.addNodeData(n.data);
+        });
+        myLocalDiagram.model = model;
+        // select the node at the diagram's focus
+        var selectedLocal = myLocalDiagram.findPartForKey(node.data.key);
+        if (selectedLocal !== null) selectedLocal.isSelected = true;
+      }
+    }
+
+    // Create the tree model containing TOTAL nodes, with each node having a variable number of children
+    var nodeDataArray = [];
+    function setupDiagram(total) {
+      var queryString = window.location.search;
+      var urlParams = new URLSearchParams(queryString);
+      var cacheid=urlParams.get('cacheid');
+      cacheid= parseInt(cacheid, 10);
+      if (isNaN(cacheid) || cacheid<0 || cacheid>7583){
+        cacheid=0;
+      }
+      console.log(cacheid);
+      document.getElementById('txtInputQuery').value=dataTreeView[cacheid]['queryText'];
+
+      if (total === undefined) total = 100;  // default to 100 nodes
+      nodeDataArray = dataTreeView[cacheid]['display'];
+      myFullDiagram.model = new go.TreeModel(nodeDataArray);
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+
+<div id="sample">
+  <form id="form1">
+     <table>
+        <tr>
+            <td><p style="width:900px">Natural Language Parse Tree (NLPT): We set the format of each node as {Type}_ENDLINE_{Value}. Non-terminal nodes contain information about type only.
+              You can see the dependencies between terminal nodes in the pretty print format provided in the result of step 2.1 with format {source_index}_{target_index}_{dependency_type}. The expected properties are shown in the result of step 2.2.</p>
+            </td>
+        </tr>
+       <tr>
+          <td>Input query:</td>
+      </tr>
+      <tr>
+          <td><textarea id="txtInputQuery" name="idInputQuery" rows="10" cols="115"></textarea></td>
+      </tr>
+         <tr>
+          <td>Full View and Detailed View: Click on nodes in full view to see them clearly in detailed view</td>
+      </tr>
+     </table>
+  </form>
+  <div id="fullDiagram" style="height: 250px; width: 960px; border: 1px solid black; margin: 2px; position: relative;"><canvas tabindex="0" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 237px;" width="1054" height="237">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 1054px; height: 248px; z-index: 1;"><div style="position: absolute; width: 1516.87px; height: 1px;"></div></div></div>
+  <div id="localDiagram" style="height: 350px; width: 960px; border: 1px solid black; margin: 2px; position: relative;"><canvas tabindex="0" style="position: absolute; top: 0px; left: 0px; z-index: 2; user-select: none; touch-action: none; width: 1054px; height: 348px;" width="1054" height="348">This text is displayed if your browser does not support the Canvas HTML element.</canvas><div style="position: absolute; overflow: auto; width: 1054px; height: 348px; z-index: 1;"><div style="position: absolute; width: 1px; height: 1px;"></div></div></div>
+</div>
+  </body>
+  </html>
